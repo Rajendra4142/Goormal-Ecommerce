@@ -16,6 +16,13 @@ const CredentialsSignInForm = () => {
         success: false,
         message: ''
     })
+    useEffect(() => {
+        setMouted(true)
+    }, [])
+
+    if (!mounted) {
+        return null;
+    }
 
     const SignInButton = () => {
         const { pending } = useFormStatus()
@@ -26,13 +33,7 @@ const CredentialsSignInForm = () => {
         )
     }
 
-    useEffect(() => {
-        setMouted(true)
-    }, [])
 
-    if (!mounted) {
-        return null;
-    }
     return <form action={action}>
         <div className="space-y-6">
             <div>

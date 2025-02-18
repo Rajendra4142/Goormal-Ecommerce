@@ -39,13 +39,14 @@ export const config = {
             user.password
           );
           // if password is correct return user
-
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-          };
+          if (isMatch) {
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              role: user.role,
+            };
+          }
         }
         // if user doesnot match  return null
         return null;
