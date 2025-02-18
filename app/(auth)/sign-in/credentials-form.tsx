@@ -5,8 +5,10 @@ import { Label } from "@/components/ui/label";
 import { signInWithCredentials } from "@/lib/actions/user.action";
 import { signInDefaultValues } from "@/lib/constants";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
+
 
 const CredentialsSignInForm = () => {
 
@@ -16,6 +18,11 @@ const CredentialsSignInForm = () => {
         success: false,
         message: ''
     })
+
+    const searchParams = useSearchParams()
+    const callbackUrl = searchParams.get('callbackUrl') || '/'
+
+
     useEffect(() => {
         setMouted(true)
     }, [])
@@ -34,7 +41,8 @@ const CredentialsSignInForm = () => {
     }
 
 
-    return <form action={action}>
+    return <form action={action} >
+        <input type="hidden" name="callbackUrl" value={callbackUrl} />
         <div className="space-y-6">
             <div>
                 <Label htmlFor="email">Email</Label>
