@@ -3,7 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./db/prisma";
 import { adapter } from "next/dist/server/web/adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { compare, compareSync } from "bcrypt-ts-edge";
+import { compareSync } from "bcrypt-ts-edge";
 import type { NextAuthConfig } from "next-auth";
 export const config = {
   pages: {
@@ -29,12 +29,10 @@ export const config = {
             email: credentials.email as string,
           },
         });
-        console.log("Plain Password:", credentials.password);
-        console.log("Stored Hashed Password:", user?.password);
-
+        console.log(user?.email, user?.password);
         // check if user exists and if the password matches
         if (user && user.password) {
-          const isMatch = await compare(
+          const isMatch = compareSync(
             credentials.password as string,
             user.password
           );

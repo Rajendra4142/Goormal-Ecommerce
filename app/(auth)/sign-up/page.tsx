@@ -3,17 +3,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import CredentialsSignInForm from "./credentials-form";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import SignUpForm from "./sign-up-form";
 
 export const metadata: Metadata = {
-    title: 'Sign In'
+    title: 'Sign Up'
 
 }
-
-
-const SignInPage = async (props: {
+const SignUpPage = async (props: {
     searchParams: Promise<{
         callbackUrl: string
     }>
@@ -30,11 +28,12 @@ const SignInPage = async (props: {
                 <Link href='/' className="flex-center">
                     <Image src='/images/logo.svg' width={100} height={100} alt="logo" priority={true} />
                 </Link>
-                <CardTitle className="text-center">Sign In</CardTitle>
-                <CardDescription className="text-center">Sign in to your Account</CardDescription>
+                <CardTitle className="text-center">Sign Up</CardTitle>
+                <CardDescription className="text-center">Enter your information below to sign up.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <CredentialsSignInForm></CredentialsSignInForm>
+                <SignUpForm />
+
             </CardContent>
 
         </Card>
@@ -42,4 +41,4 @@ const SignInPage = async (props: {
 
 }
 
-export default SignInPage;
+export default SignUpPage;
