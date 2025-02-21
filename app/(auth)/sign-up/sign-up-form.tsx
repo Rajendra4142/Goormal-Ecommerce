@@ -46,22 +46,22 @@ const SignUpForm = () => {
         <div className="space-y-6">
             <div>
                 <Label htmlFor="email">Name</Label>
-                <Input id="name" type="text" required autoComplete="name"
+                <Input id="name" type="text" name="name" autoComplete="name"
                     defaultValue={signUpDefaultValues.email}></Input>
             </div>
             <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" required autoComplete="email"
+                <Input id="email" type="text" name="email" autoComplete="email"
                     defaultValue={signUpDefaultValues.email}></Input>
             </div>
             <div>
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required autoComplete="password"
+                <Input id="password" type="password" name="password" required autoComplete="password"
                     defaultValue={signUpDefaultValues.password}></Input>
             </div>
             <div>
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input id="confirmPassword" type="password" required autoComplete="confirmPassword"
+                <Input id="confirmPassword" type="password" name="confirmPassword" required autoComplete="confirmPassword"
                     defaultValue={signUpDefaultValues.confirmPassword}></Input>
             </div>
             <div>
