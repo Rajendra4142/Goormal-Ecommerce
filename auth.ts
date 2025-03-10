@@ -5,6 +5,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextResponse } from "next/server";
 import { prisma } from "./db/prisma";
+import { cookies } from "next/headers";
 
 export const config = {
   pages: {
@@ -69,6 +70,7 @@ export const config = {
     async jwt({ token, user, trigger, session }: any) {
       // assign user fields to token
       if (user) {
+        token.id = user.id;
         token.role = user.role;
         // if user has no name use the email
         if (user.name === "NO_NAME") {
@@ -79,12 +81,55 @@ export const config = {
             data: { name: token.name },
           });
         }
+        if (trigger === "signIn" || trigger === "signUp") {
+          const cookieObject = await cookies();
+          const sessionCartId = cookieObject.get("sessionCartId")?.value;
+
+          if (sessionCartId) {
+            const sessionCart = await prisma.cart.findFirst({
+              where: { sessionCartId },
+            });
+            if (sessionCart) {
+              // delete current user cart
+              await prisma.cart.deleteMany({
+                where: { userId: user.id },
+              });
+              //assign new cart
+              await prisma.cart.update({
+                where: { id: sessionCart.id },
+                data: { userId: user.id },
+              });
+            }
+          }
+        }
       }
+
+      // handle session updates
+      if (session?.user.name && trigger === "update") {
+        token.name = session.user.name;
+      }
+
       return token;
     },
     authorized({ request, auth }: any) {
-      // check for  session cart cookies
+      // array of regex patterns of paths we want to protect
+      const protectedPaths = [
+        /\/shipping-address/,
+        /\/payment-method/,
+        /\/place-order/,
+        /\/profile/,
+        /\/user\/(.*)/,
+        /\/order\/(.*)/,
+        /\/admin/,
+      ];
+
+      // get pathname from the req url object
+      const { pathname } = request.nextUrl;
+
+      // check if use is not authenticated and accessing a protectd path
+      if (!auth && protectedPaths.some((p) => p.test(pathname))) return false;
       if (!request.cookies.get("sessionCartId")) {
+        // check for  session cart cookies
         // generate new sessionId cookie
         const sessionCartId = crypto.randomUUID();
         // console.log(sessionCartId);

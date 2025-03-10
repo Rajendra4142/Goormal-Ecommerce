@@ -105,3 +105,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+/* uploadthing button text override */
+html.dark .upload-field .text-white {
+  color: #ffff !important
+}
+
+.upload-field .text-white {
+  color: #000 !important
+}

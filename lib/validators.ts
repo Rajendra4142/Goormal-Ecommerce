@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { formatNumberWithDecimal } from "./utils";
+import { PAYMENT_METHODS } from "./constants";
 
 //schema for inserting products
 const currency = z
@@ -20,6 +21,11 @@ export const insertProductSchema = z.object({
   isFeatured: z.boolean(),
   banner: z.string().nullable(),
   price: currency,
+});
+
+// schema for updating products
+export const updateProductSchema = insertProductSchema.extend({
+  id: z.string().min(1, "id is required"),
 });
 
 // schema for signing users in
@@ -63,12 +69,12 @@ export const insertCardSchema = z.object({
   userId: z.string().optional().nullable(),
 });
 
-export const paymentResultSchema = z.object({
-  id: z.string(),
-  status: z.string(),
-  email_address: z.string(),
-  pricePaid: z.string(),
-});
+// export const paymentResultSchema = z.object({
+//   id: z.string(),
+//   status: z.string(),
+//   email_address: z.string(),
+//   pricePaid: z.string(),
+// });
 
 export const shippingAddressSchema = z.object({
   fullName: z.string().min(3, "Name must be a least 3 characters"),
@@ -78,4 +84,79 @@ export const shippingAddressSchema = z.object({
   country: z.string().min(3, "Country must be a least 3 characters"),
   lat: z.number().optional(),
   lng: z.number().optional(),
+});
+
+// schema for payment methods
+export const paymentMethodSchema = z
+  .object({
+    type: z.string().min(1, "Payment method is required"),
+  })
+  .refine(
+    (data) =>
+      PAYMENT_METHODS.some(
+        (method) => method.toLowerCase() === data.type.toLowerCase()
+      ),
+    {
+      path: ["type"],
+      message: "Invalid Payment method",
+    }
+  );
+
+// insert order schema
+// export const insertOrderSchema = z.object({
+//   userId: z.string().min(1, "User is required"),
+//   itemsPrice: currency,
+//   totalPrice: currency,
+//   shippingPrice: currency,
+//   taxPrice: currency,
+//   paymentMethod: z.string().refine((data) => PAYMENT_METHODS.includes(data), {
+//     message: "Invalid payment Method",
+//   }),
+//   shippingAddress: shippingAddressSchema,
+// });
+
+// schema for inserting an order item
+export const insertOrderItemSchema = z.object({
+  productId: z.string(),
+  slug: z.string(),
+  image: z.string(),
+  name: z.string(),
+  price: currency,
+  qty: z.number(),
+});
+
+export const insertOrderSchema = z.object({
+  userId: z.string().min(1, "User is required"),
+  itemsPrice: currency,
+  totalPrice: currency,
+  shippingPrice: currency,
+  taxPrice: currency,
+  paymentMethod: z.string().refine(
+    (data) => {
+      const normalizedData = data.toLowerCase().trim(); // Normalize the input value
+      const normalizedMethods = PAYMENT_METHODS.map((method) =>
+        method.toLowerCase().trim()
+      ); // Normalize the PAYMENT_METHODS values
+      return normalizedMethods.includes(normalizedData); // Check if the normalized value exists
+    },
+    {
+      message: "Invalid payment Method",
+    }
+  ),
+  shippingAddress: shippingAddressSchema,
+});
+
+// schema for the paypal paymentresult
+export const paymentResultSchema = z.object({
+  id: z.string(),
+  status: z.string(),
+  email_address: z.string(),
+  pricePaid: z.string(),
+});
+
+// schema for updatin the user profile
+
+export const updateProfileSchema = z.object({
+  name: z.string().min(3, "Name must be at least 3 characters"),
+  email: z.string().min(3, "Email must be at least 3 characters"),
 });

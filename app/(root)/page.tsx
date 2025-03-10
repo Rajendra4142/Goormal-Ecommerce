@@ -1,7 +1,8 @@
 // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
+import ProductCarousel from "@/components/shared/product/product-carousel";
 import ProductList from "@/components/shared/product/product-list";;
-import { getLatestProduct } from "@/lib/actions/product.action";
+import { getLatestProduct, getFeaturedProducts } from "@/lib/actions/product.action";
 
 // const HomePage = async () => {
 //   await delay(2000)
@@ -13,11 +14,13 @@ import { getLatestProduct } from "@/lib/actions/product.action";
 
 const HomePage = async () => {
   const latestProducts = await getLatestProduct()
+  const featuredProducts = await getFeaturedProducts()
   // console.log(latestProducts);
 
 
   return <>
-    <ProductList data={latestProducts} title="Newest Arrivals" limit={4} />
+    {featuredProducts.length > 0 && <ProductCarousel data={featuredProducts} />}
+    <ProductList data={latestProducts} title="Newest Arrivals" limit={5} />
   </>;
 };
 

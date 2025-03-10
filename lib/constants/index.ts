@@ -19,9 +19,37 @@ export const signUpDefaultValues = {
 };
 
 export const shippingAddressDefaultValues = {
-  fullName: "Ram Bahadur",
-  streetAddress: "124 Main st",
-  city: "anytown",
-  postalCode: "12345",
-  country: "Nepal",
+  // fullName: "Ram Bahadur",
+  // streetAddress: "124 Main st",
+  // city: "anytown",
+  // postalCode: "12345",
+  // country: "Nepal",
+  fullName: "",
+  streetAddress: "",
+  city: "",
+  postalCode: "",
+  country: "",
+};
+
+export const PAYMENT_METHODS = process.env.PAYMENT_METHODS
+  ? process.env.PAYMENT_METHODS.split(",").map((method) => method.trim()) // ✅ Ensures proper trimming
+  : ["Paypal", "Stripe", "CashOnDelivery"];
+
+export const DEFAULT_PAYMENT_METHOD =
+  process.env.DEFAULT_PAYMENT_METHOD?.trim() || "Paypal"; // ✅ Trim default value
+
+export const PAGE_SIZE = Number(process.env.PAGE_SIZE) || 12;
+export const productDefaultValues = {
+  name: "",
+  slug: "",
+  category: "",
+  images: [],
+  description: "",
+  brand: "",
+  price: "0",
+  stock: 0,
+  rating: "0",
+  numReviews: "0",
+  isFeatured: false,
+  banner: null,
 };
