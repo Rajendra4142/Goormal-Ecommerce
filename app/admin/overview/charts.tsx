@@ -1,6 +1,5 @@
 'use client'
-import { fallbackModeToStaticPathsResult } from 'next/dist/lib/fallback';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 type SalesData = {
     salesData: { month: string; totalSales: number }[]

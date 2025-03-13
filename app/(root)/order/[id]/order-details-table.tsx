@@ -25,7 +25,6 @@ const OrderDetailsTable = ({ order, paypalClientId, isAdmin }: { order: Omit<Ord
         isDelivered,
         isPaid,
         paidAt,
-        deliveredAt,
         orderItem
 
 

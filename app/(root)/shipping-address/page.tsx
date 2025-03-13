@@ -5,7 +5,6 @@ import { Metadata } from 'next'
 import { ShippingAddress } from '@/types'
 import { getUserById } from "@/lib/actions/user.action";
 import ShippingAddressForm from "./shipping-address-form";
-import { shippingAddressDefaultValues } from "@/lib/constants";
 import CheckoutSteps from "@/components/shared/checkout-steps";
 
 export const metadata: Metadata = {
