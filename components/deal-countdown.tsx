@@ -47,15 +47,13 @@ const DealCountdown = () => {
                     <h3 className="text-3xl font-bold">Loading Countdown</h3>
                 </div>
             </section>
-        );
+        )
     }
-
     if (time.days === 0 && time.hours === 0 && time.minutes === 0 && time.seconds === 0) {
         return (<section className="grid grid-cols-1 md:grid-cols-2 my-20">
             <div className="flex flex-col gap-2 justify-center">
                 <h3 className="text-3xl font-bold">Deal has ended</h3>
-                <p>This deal is no longer available.
-                </p>
+                <p>This deal is no longer available.</p>
                 <div className="text-center">
                     <Button asChild>
                         <Link href='/search' >
@@ -79,7 +77,7 @@ const DealCountdown = () => {
     return (<section className="grid grid-cols-1 md:grid-cols-2 my-20">
         <div className="flex flex-col gap-2 justify-center">
             <h3 className="text-3xl font-bold">Deal of the month</h3>
-            <p>Get ready for shopping experience like never before with our Deals of the month! Every purchase comes with exclusive perks and offers, making this month of celebration of savvy choices and amazing deals.Don't miss out 🎁 🛒
+            <p>Get ready for shopping experience like never before with our Deals of the month! Every purchase comes with exclusive perks and offers, making this month a celebration of savvy choices and amazing deals. Don&apos;t miss out 🎁 🛒
             </p>
             <ul className="grid grid-cols-4">
                 <StatBox label='Days' value={time.days} />
@@ -106,14 +104,12 @@ const DealCountdown = () => {
 
     </section>);
 }
+
 const StatBox = ({ label, value }: { label: string; value: number }) => (
     <li className="p-4 w-full text-center">
         <p className="text-3xl font-bold">{value}</p>
         <p>{label}</p>
     </li>
-
 )
-
-
 
 export default DealCountdown;

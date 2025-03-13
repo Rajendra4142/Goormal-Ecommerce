@@ -5,6 +5,7 @@ import { prisma } from "@/db/prisma";
 import { revalidatePath } from "next/cache";
 import { insertProductSchema, updateProductSchema } from "../validators";
 import { z } from "zod";
+import { Prisma } from "@prisma/client";
 
 export async function getLatestProduct() {
   // const prisma = new PrismaClient();
@@ -48,7 +49,7 @@ export async function getAllProducts({
   category?: string;
 }) {
   // Create a filter object based on query and category
-  const whereFilter: any = {};
+  const whereFilter: Prisma.ProductWhereInput = {};
 
   // If query exists, filter products with case-insensitive search
   if (query) {

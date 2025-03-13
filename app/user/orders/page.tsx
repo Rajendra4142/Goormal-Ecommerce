@@ -1,6 +1,5 @@
 
 // 'use client'
-import { auth } from "@/auth";
 import Pagination from "@/components/shared/pagination";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getMyOrders } from "@/lib/actions/order.actions";
@@ -25,7 +24,7 @@ const OrderPage = async (props: { searchParams: Promise<{ page: string }> }) => 
 
     // console.log(orders)
 
-    const session = await auth()
+    // const session = await auth()
 
     return (
         <div className="space-y-2">

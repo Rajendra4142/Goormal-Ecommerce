@@ -204,7 +204,7 @@ const ProductForm = ({ type, product, productId }: {
                                             <FormControl>
                                                 <UploadButton endpoint='imageUploader' onClientUploadComplete={(res: { url: string }[]) => (form.setValue('images', [...images, res[0].url]))}
                                                     onUploadError={(error: Error) => {
-                                                        toast: ({
+                                                        toast({
                                                             variant: 'destructive',
                                                             description: `Error! ${error.message}`
                                                         })
@@ -243,7 +243,7 @@ const ProductForm = ({ type, product, productId }: {
                             {isFeatured && !banner && (
                                 <UploadButton endpoint='imageUploader' onClientUploadComplete={(res: { url: string }[]) => (form.setValue('banner', res[0].url))}
                                     onUploadError={(error: Error) => {
-                                        toast: ({
+                                        toast({
                                             variant: 'destructive',
                                             description: `Error! ${error.message}`
                                         })
