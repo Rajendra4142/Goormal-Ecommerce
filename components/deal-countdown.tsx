@@ -45,10 +45,11 @@ const DealCountdown = () => {
             <section className="grid grid-cols-1 md:grid-cols-2 my-20">
                 <div className="flex flex-col gap-2 justify-center">
                     <h3 className="text-3xl font-bold">Loading Countdown</h3>
-                    /</div>
-                /</section>
-        )
+                </div>
+            </section>
+        );
     }
+
     if (time.days === 0 && time.hours === 0 && time.minutes === 0 && time.seconds === 0) {
         return (<section className="grid grid-cols-1 md:grid-cols-2 my-20">
             <div className="flex flex-col gap-2 justify-center">
