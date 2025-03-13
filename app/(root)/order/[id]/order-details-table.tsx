@@ -13,7 +13,7 @@ import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 
 
-const OrderDetailsTable = ({ order, paypalClientId, isAdmin }: { order: Order, paypalClientId: string, isAdmin: boolean }) => {
+const OrderDetailsTable = ({ order, paypalClientId, isAdmin }: { order: Omit<Order, 'paymentResult'>, paypalClientId: string, isAdmin: boolean }) => {
     const {
         id,
         shippingAddress,

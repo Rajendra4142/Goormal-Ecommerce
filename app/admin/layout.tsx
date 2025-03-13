@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MainNav from "../admin/main-nav";
 import { Input } from "@/components/ui/input";
+import AdminSearch from "@/components/admin/admin-search";
 
 
 export default function UserLayout({
@@ -23,9 +24,10 @@ export default function UserLayout({
                         {/* {main nav} */}
                         <MainNav />
                         <div className="ml-auto items-center flex space-x-4">
-                            <div>
+                            <AdminSearch />
+                            {/* <div>
                                 <Input placeholder='Search...' type="search" className="md:w-[100px] lg:w-[300]" />
-                            </div>
+                            </div> */}
                             <Menu />
                         </div>
                     </div>
