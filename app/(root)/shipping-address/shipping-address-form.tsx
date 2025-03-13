@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ControllerRenderProps, useForm, SubmitHandler } from "react-hook-form"
 import { z } from "zod";
 import { shippingAddressDefaultValues } from "@/lib/constants";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader } from "lucide-react";
