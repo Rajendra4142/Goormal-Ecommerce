@@ -38,7 +38,7 @@ const OrderDetailsTable = ({
     order: Omit<Order, 'paymentResult'>;
     paypalClientId: string;
     isAdmin: boolean;
-    stripeClientSecret: string | null;
+    // stripeClientSecret: string | null;
 }) => {
     const {
         id,
