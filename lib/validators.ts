@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { formatNumberWithDecimal } from "./utils";
 import { PAYMENT_METHODS } from "./constants";
-import { title } from "process";
 
 //schema for inserting products
 const currency = z
