@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { formatNumberWithDecimal } from "./utils";
 import { PAYMENT_METHODS } from "./constants";
+import { title } from "process";
 
 //schema for inserting products
 const currency = z
@@ -159,4 +160,23 @@ export const paymentResultSchema = z.object({
 export const updateProfileSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   email: z.string().min(3, "Email must be at least 3 characters"),
+});
+
+// schema for update users
+export const updateUserSchema = updateProfileSchema.extend({
+  id: z.string().min(1, "ID is required"),
+  role: z.string().min(1, "Role is required"),
+});
+
+//schema for insert reviews
+export const insertReviewSchema = z.object({
+  title: z.string().min(3, "Title must be at least 3 characters"),
+  description: z.string().min(3, "Description must be at least 3 characters"),
+  productId: z.string().min(1, "Product is required"),
+  userId: z.string().min(1, "Product is required"),
+  rating: z.coerce
+    .number()
+    .int()
+    .min(1, " Rating must be at least 1")
+    .max(5, "Rating must be at most 3"),
 });

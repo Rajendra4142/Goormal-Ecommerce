@@ -1,5 +1,7 @@
 // const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
+import DealCountdown from "@/components/deal-countdown";
+import IconBoxes from "@/components/icon-boxes";
 import ProductCarousel from "@/components/shared/product/product-carousel";
 import ProductList from "@/components/shared/product/product-list";;
 import { getLatestProduct, getFeaturedProducts } from "@/lib/actions/product.action";
@@ -20,7 +22,9 @@ const HomePage = async () => {
 
   return <>
     {featuredProducts.length > 0 && <ProductCarousel data={featuredProducts} />}
-    <ProductList data={latestProducts} title="Newest Arrivals" limit={5} />
+    <ProductList data={latestProducts} title="Newest Arrivals" limit={4} />
+    <DealCountdown />
+    <IconBoxes />
   </>;
 };
 

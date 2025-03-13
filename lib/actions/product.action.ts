@@ -35,7 +35,7 @@ export async function getProductById(productid: string) {
   return convertToPlainObject(data);
 }
 
-// get all products
+// Get all products with filtering
 export async function getAllProducts({
   query,
   limit = PAGE_SIZE,
@@ -47,12 +47,35 @@ export async function getAllProducts({
   page: number;
   category?: string;
 }) {
+  // Create a filter object based on query and category
+  const whereFilter: any = {};
+
+  // If query exists, filter products with case-insensitive search
+  if (query) {
+    whereFilter.name = {
+      contains: query,
+      mode: "insensitive", // Case-insensitive search
+    };
+  }
+
+  // If category exists, filter by category
+  if (category) {
+    whereFilter.category = category;
+  }
+
+  // Fetch products based on filters
   const data = await prisma.product.findMany({
+    where: whereFilter,
     orderBy: { createdAt: "desc" },
     skip: (page - 1) * limit,
     take: limit,
   });
-  const dataCount = await prisma.product.count();
+
+  // Get the total count of products with filters
+  const dataCount = await prisma.product.count({
+    where: whereFilter,
+  });
+
   return {
     data,
     totalPages: Math.ceil(dataCount / limit),
