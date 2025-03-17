@@ -14,6 +14,7 @@ import {
 import Pagination from '@/components/shared/pagination';
 import DeleteDialog from '@/components/shared/delete-dialog';
 import { requireAdmin } from '@/lib/auth-guard';
+import AdminSearch from '@/components/admin/admin-search';
 
 const AdminProductsPage = async (props: {
     searchParams: Promise<{
@@ -41,6 +42,9 @@ const AdminProductsPage = async (props: {
             <div className='flex-between'>
                 <div className='flex items-center gap-3'>
                     <h1 className='h2-bold'>Products</h1>
+                    <Suspense fallback={<div>Loading search...</div>}>
+                        <AdminSearch />
+                    </Suspense>
                     {searchText && (
                         <div>
                             Filtered by <i>&quot;{searchText}&quot;</i>{' '}
