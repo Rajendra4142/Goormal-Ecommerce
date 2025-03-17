@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         message: "updateOrderToPaid was successful",
       });
-    } catch (err) {
+    } catch (error) {
       return NextResponse.json(
         { error: "Failed to update order status" },
         { status: 500 }
