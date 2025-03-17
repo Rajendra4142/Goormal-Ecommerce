@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { getAllProducts, deleteProduct } from '@/lib/actions/product.action';
 import { formatCurrency, formatId } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -90,7 +91,9 @@ const AdminProductsPage = async (props: {
                 </TableBody>
             </Table>
             {products.totalPages > 1 && (
-                <Pagination page={page} totalPages={products.totalPages} />
+                <Suspense fallback={<div>Loading pagination...</div>}>
+                    <Pagination page={page} totalPages={products.totalPages} />
+                </Suspense>
             )}
         </div>
     );
