@@ -1,18 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Input } from '../ui/input';
 
-const AdminSearch = () => {
+const AdminSearchComponent = () => {
     const pathname = usePathname();
-    const formActionUrl = pathname.includes('/admin/orders')
-        ? '/admin/orders'
-        : pathname.includes('/admin/users')
-            ? '/admin/users'
-            : '/admin/products';
-
     const searchParams = useSearchParams();
+
     const [queryValue, setQueryValue] = useState(searchParams.get('query') || '');
 
     useEffect(() => {
@@ -20,7 +15,7 @@ const AdminSearch = () => {
     }, [searchParams]);
 
     return (
-        <form action={formActionUrl} method='GET'>
+        <form action={pathname} method='GET'>
             <Input
                 type='search'
                 placeholder='Search...'
@@ -33,6 +28,14 @@ const AdminSearch = () => {
                 Search
             </button>
         </form>
+    );
+};
+
+const AdminSearch = () => {
+    return (
+        <Suspense fallback={<div>Loading search...</div>}>
+            <AdminSearchComponent />
+        </Suspense>
     );
 };
 

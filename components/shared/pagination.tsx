@@ -1,7 +1,9 @@
 'use client';
+
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '../ui/button';
 import { formUrlQuery } from '@/lib/utils';
+import { Suspense } from 'react';
 
 type PaginationProps = {
     page: number | string;
@@ -9,9 +11,9 @@ type PaginationProps = {
     urlParamName?: string;
 };
 
-const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
+const PaginationComponent = ({ page, totalPages, urlParamName }: PaginationProps) => {
     const router = useRouter();
-    const searchParams = useSearchParams();
+    const searchParams = useSearchParams();  // ✅ This must be inside <Suspense>
 
     const handleClick = (btnType: string) => {
         const pageValue = btnType === 'next' ? Number(page) + 1 : Number(page) - 1;
@@ -45,6 +47,14 @@ const Pagination = ({ page, totalPages, urlParamName }: PaginationProps) => {
                 Next
             </Button>
         </div>
+    );
+};
+
+const Pagination = (props: PaginationProps) => {
+    return (
+        <Suspense fallback={<div>Loading pagination...</div>}>
+            <PaginationComponent {...props} />
+        </Suspense>
     );
 };
 
