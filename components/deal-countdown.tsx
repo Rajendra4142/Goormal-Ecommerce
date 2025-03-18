@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 //static target date(replace with desired date)
-const TARGET_DATE = new Date('2025-03-15T00:00:00')
+const TARGET_DATE = new Date('2025-04-15T00:00:00')
 
 //function to calculate the time remaining
 const calculateTimeRemaining = (targetDate: Date) => {

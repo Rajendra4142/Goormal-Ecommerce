@@ -5,7 +5,7 @@ import ProductPrice from "@/components/shared/product/product-price";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { getMyCart } from "@/lib/actions/card.actions";
-import { getProductByslug } from "@/lib/actions/product.action";
+import { getProductBySlug } from "@/lib/actions/product.action";
 import { notFound } from "next/navigation";
 import ReviewList from "./review-list";
 import Rating from "@/components/shared/product/rating";
@@ -16,7 +16,7 @@ const ProductDetailsPage = async (props: {
     params: Promise<{ slug: string }>
 }) => {
     const { slug } = await props.params
-    const product = await getProductByslug(slug)
+    const product = await getProductBySlug(slug)
     if (!product) notFound();
 
 

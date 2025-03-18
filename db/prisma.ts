@@ -14,17 +14,18 @@ const pool = new Pool({ connectionString });
 const adapter = new PrismaNeon(pool);
 
 // Extends the PrismaClient with a custom result transformer to convert the price and rating fields to strings.
+
 export const prisma = new PrismaClient({ adapter }).$extends({
   result: {
     product: {
       price: {
         compute(product) {
-          return product.price.toString();
+          return product.price ? product.price.toString() : "0";
         },
       },
       rating: {
         compute(product) {
-          return product.rating.toString();
+          return product.rating ? product.rating.toString() : "0";
         },
       },
     },
@@ -32,25 +33,25 @@ export const prisma = new PrismaClient({ adapter }).$extends({
       itemsPrice: {
         needs: { itemsPrice: true },
         compute(cart) {
-          return cart.itemsPrice.toString();
-        },
-      },
-      taxPrice: {
-        needs: { taxPrice: true },
-        compute(cart) {
-          return cart.taxPrice.toString();
-        },
-      },
-      totalPrice: {
-        needs: { totalPrice: true },
-        compute(cart) {
-          return cart.totalPrice.toString();
+          return cart.itemsPrice ? cart.itemsPrice.toString() : "0";
         },
       },
       shippingPrice: {
         needs: { shippingPrice: true },
         compute(cart) {
-          return cart.shippingPrice.toString();
+          return cart.shippingPrice ? cart.shippingPrice.toString() : "0";
+        },
+      },
+      taxPrice: {
+        needs: { taxPrice: true },
+        compute(cart) {
+          return cart.taxPrice ? cart.taxPrice.toString() : "0";
+        },
+      },
+      totalPrice: {
+        needs: { totalPrice: true },
+        compute(cart) {
+          return cart.totalPrice ? cart.totalPrice.toString() : "0";
         },
       },
     },
@@ -58,32 +59,32 @@ export const prisma = new PrismaClient({ adapter }).$extends({
       itemsPrice: {
         needs: { itemsPrice: true },
         compute(cart) {
-          return cart.itemsPrice.toString();
-        },
-      },
-      taxPrice: {
-        needs: { taxPrice: true },
-        compute(cart) {
-          return cart.taxPrice.toString();
-        },
-      },
-      totalPrice: {
-        needs: { totalPrice: true },
-        compute(cart) {
-          return cart.totalPrice.toString();
+          return cart.itemsPrice ? cart.itemsPrice.toString() : "0";
         },
       },
       shippingPrice: {
         needs: { shippingPrice: true },
         compute(cart) {
-          return cart.shippingPrice.toString();
+          return cart.shippingPrice ? cart.shippingPrice.toString() : "0";
+        },
+      },
+      taxPrice: {
+        needs: { taxPrice: true },
+        compute(cart) {
+          return cart.taxPrice ? cart.taxPrice.toString() : "0";
+        },
+      },
+      totalPrice: {
+        needs: { totalPrice: true },
+        compute(cart) {
+          return cart.totalPrice ? cart.totalPrice.toString() : "0";
         },
       },
     },
     orderItem: {
       price: {
         compute(cart) {
-          return cart.price.toString();
+          return cart.price ? cart.price.toString() : "0";
         },
       },
     },

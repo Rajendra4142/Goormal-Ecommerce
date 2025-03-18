@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { getAllProducts, deleteProduct } from '@/lib/actions/product.action';
 import { formatCurrency, formatId } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -13,13 +14,19 @@ import {
 import Pagination from '@/components/shared/pagination';
 import DeleteDialog from '@/components/shared/delete-dialog';
 import { requireAdmin } from '@/lib/auth-guard';
+import AdminSearch from '@/components/admin/admin-search';
 
 const AdminProductsPage = async (props: {
-    searchParams: { page?: string; query?: string; category?: string };
+    searchParams: Promise<{
+        page: string;
+        query: string;
+        category: string;
+    }>;
 }) => {
     await requireAdmin();
 
-    const { searchParams } = props;
+    const searchParams = await props.searchParams;
+
     const page = Number(searchParams.page) || 1;
     const searchText = searchParams.query || '';
     const category = searchParams.category || '';
@@ -35,6 +42,9 @@ const AdminProductsPage = async (props: {
             <div className='flex-between'>
                 <div className='flex items-center gap-3'>
                     <h1 className='h2-bold'>Products</h1>
+                    <Suspense fallback={<div>Loading search...</div>}>
+                        <AdminSearch />
+                    </Suspense>
                     {searchText && (
                         <div>
                             Filtered by <i>&quot;{searchText}&quot;</i>{' '}
@@ -85,7 +95,9 @@ const AdminProductsPage = async (props: {
                 </TableBody>
             </Table>
             {products.totalPages > 1 && (
-                <Pagination page={page} totalPages={products.totalPages} />
+                <Suspense fallback={<div>Loading pagination...</div>}>
+                    <Pagination page={page} totalPages={products.totalPages} />
+                </Suspense>
             )}
         </div>
     );

@@ -1,31 +1,28 @@
-// const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+import ProductList from '@/components/shared/product/product-list';
+import {
+  getLatestProducts,
+  getFeaturedProducts,
+} from '@/lib/actions/product.action';
+import ProductCarousel from '@/components/shared/product/product-carousel';
+import ViewAllProductsButton from '@/components/view-all-products-button';
+import IconBoxes from '@/components/icon-boxes';
+import DealCountdown from '@/components/deal-countdown';
 
-import DealCountdown from "@/components/deal-countdown";
-import IconBoxes from "@/components/icon-boxes";
-import ProductCarousel from "@/components/shared/product/product-carousel";
-import ProductList from "@/components/shared/product/product-list";;
-import { getLatestProduct, getFeaturedProducts } from "@/lib/actions/product.action";
+const Homepage = async () => {
+  const latestProducts = await getLatestProducts();
+  const featuredProducts = await getFeaturedProducts();
 
-// const HomePage = async () => {
-//   await delay(2000)
-//   return <>ProStore 2</>;
-// };
-
-// export default HomePage;
-
-
-const HomePage = async () => {
-  const latestProducts = await getLatestProduct()
-  const featuredProducts = await getFeaturedProducts()
-  // console.log(latestProducts);
-
-
-  return <>
-    {featuredProducts.length > 0 && <ProductCarousel data={featuredProducts} />}
-    <ProductList data={latestProducts} title="Newest Arrivals" limit={4} />
-    <DealCountdown />
-    <IconBoxes />
-  </>;
+  return (
+    <>
+      {featuredProducts.length > 0 && (
+        <ProductCarousel data={featuredProducts} />
+      )}
+      <ProductList data={latestProducts} title='Newest Arrivals' limit={4} />
+      <ViewAllProductsButton />
+      <DealCountdown />
+      <IconBoxes />
+    </>
+  );
 };
 
-export default HomePage;
+export default Homepage;
