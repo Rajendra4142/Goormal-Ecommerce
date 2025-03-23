@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Goormal
 
-## Getting Started
+[![Vercel Deployment](https://vercel.com/button)](https://vercel.com/rezthecoders-projects/goormal)
 
-First, run the development server:
+![Goormal Preview](path/to/your-image.png)  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Goormal is a project deployed on Vercel. This repository contains the source code and necessary configurations for the application.
+
+## 🚀 Live Demo
+You can access the live version here:
+[Goormal on Vercel](https://vercel.com/rezthecoders-projects/goormal)
+
+## 📦 Installation
+To set up the project locally, follow these steps:
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/goormal.git
+   ```
+2. **Navigate to the project directory:**
+   ```sh
+   cd goormal
+   ```
+3. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+4. **Run the development server:**
+   ```sh
+   npm run dev
+   ```
+
+## 🛠️ Technologies Used
+- **Next.js** – Framework for React applications
+- **Vercel** – Hosting and deployment
+- **Tailwind CSS** – Styling framework (if applicable)
+- **Node.js** – Backend runtime environment
+- **Express.js** – Backend framework (if applicable)
+- **MongoDB / Firebase** – Database (if used)
+
+## 📄 Environment Variables
+Ensure you configure any necessary environment variables in a `.env.local` file:
+```sh
+NEXT_PUBLIC_API_KEY=your_api_key_here
+DATABASE_URL=your_database_url_here
+SECRET_KEY=your_secret_key_here
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Deployment
+To deploy the project on **Vercel**, follow these steps:
+1. Install Vercel CLI:
+   ```sh
+   npm install -g vercel
+   ```
+2. Login to Vercel:
+   ```sh
+   vercel login
+   ```
+3. Deploy:
+   ```sh
+   vercel
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧩 Features
+- ✅ User Authentication
+- ✅ Dynamic Content Rendering
+- ✅ Responsive UI Design
+- ✅ Fast and Scalable Hosting with Vercel
+- ✅ API Integration (if applicable)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📝 Usage
+After setting up the project, you can start using it by:
+- Registering/Login to access features.
+- Navigating through different sections.
+- Using provided APIs to fetch/update data.
 
-## Learn More
+## 🐞 Troubleshooting
+If you encounter issues, try the following:
+- Ensure dependencies are installed: `npm install`
+- Restart the server: `npm run dev`
+- Check environment variables in `.env.local`
+- Look at console logs for debugging
 
-To learn more about Next.js, take a look at the following resources:
+## 📜 License
+This project is licensed under the **MIT License**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🤝 Contributing
+Pull requests are welcome! Feel free to open an issue or contribute to the project.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📞 Contact
+For any questions, reach out at **your-email@example.com** or connect on GitHub at [Rezthecoder](https://github.com/Rezthecoder).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
