@@ -15,7 +15,7 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/your-username/goormal.git
+   git clone git@github.com:Rezthecoder/Goormal.git
    ```
 2. **Navigate to the project directory:**
    ```sh
