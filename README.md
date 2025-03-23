@@ -2,7 +2,7 @@
 
 [![Vercel Deployment](https://vercel.com/button)](https://vercel.com/rezthecoders-projects/goormal)
 
-![Goormal Preview](path/to/your-image.png)  
+![Goormal Preview](public/images/goormal.png)  
 
 Goormal is a project deployed on Vercel. This repository contains the source code and necessary configurations for the application.
 
